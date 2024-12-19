@@ -7,10 +7,9 @@ void removeWhitespaces(char *exp)
 
     while (exp[i] != '\0')
     {
-        // to check if character is not whitespace or tab.
         if (exp[i] != ' ' && exp[i] != '\t' && exp[i] != '\n')
         {
-            exp[j] = exp[i]; // it copies non-whitespace character
+            exp[j] = exp[i]; 
             j++;
         }
         i++;
@@ -30,19 +29,16 @@ int checkValidity(char *exp)
     {
         char c = exp[i];
 
-        // check for invalid characters
         if (!(c >= '0' && c <= '9') && !isOperator(c))
         {
             return 0;
         }
 
-        // check for consecutive operators
         if (isOperator(c) && isOperator(exp[i + 1]))
         {
             return 0;
         }
 
-        // check for division by zero
         if (exp[i] == '/' && exp[i + 1] == '0')
         {
             return 2;
@@ -84,7 +80,6 @@ int calculate(const char *exp)
             num = num * 10 + (c - '0');
         }
 
-        // if the char is operator or end of string
         if (!ifIsdigit(c) || i == len - 1)
         {
             if (sign == '+')
