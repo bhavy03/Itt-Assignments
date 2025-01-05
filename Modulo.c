@@ -1,47 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-long long mod_exp(long long B, long long N, long long M)
+long long mod_exp(long long base, long long exponent, long long modulo)
 {
     long long result = 1;
-    B = B % M;
+    base = base % modulo;
 
-    while (N > 0)
+    while (exponent > 0)
     {
-        if (N % 2 == 1)
+        if (exponent % 2 == 1)
         {
-            result = (result * B) % M;
+            result = (result * base) % modulo;
         }
-        B = (B * B) % M;
-        N = N / 2;
+        base = (base * base) % modulo;
+        exponent = exponent / 2;
     }
     return result;
 }
 
 int main()
 {
-    long long B, N, M;
+    long long base, exponent, modulo;
 
-    printf("Enter base (B): ");
-    scanf("%lld", &B);
-    printf("Enter exponent (N): ");
-    scanf("%lld", &N);
-    printf("Enter modulus (M): ");
-    scanf("%lld", &M);
+    printf("Enter base : ");
+    scanf("%lld", &base);
+    printf("Enter exponent : ");
+    scanf("%lld", &exponent);
+    printf("Enter modulus : ");
+    scanf("%lld", &modulo);
 
-    if (M <= 1)
+    if (modulo <= 1)
     {
-        printf("Error: Modulus M must be greater than 1.\n");
+        printf("Error: Modulus must be greater than 1.\n");
         return 1;
     }
 
-    if (N < 0)
+    if (exponent < 0)
     {
-        printf("Error: Exponent N must be a positive integer.\n");
+        printf("Error: Exponent must be a positive integer.\n");
         return 1;
     }
 
-    long long result = mod_exp(B, N, M);
+    long long result = mod_exp(base, exponent, modulo);
     printf("Result: %lld\n", result);
 
     return 0;
