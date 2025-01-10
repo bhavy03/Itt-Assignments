@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+  int rows, cols, target, found = 0;
+  printf("Enter number of rows and columns:\n");
+  scanf("%d %d", &rows, &cols);
+
+  printf("Enter the matrix:\n");
+  int arr[rows][cols];
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      scanf("%d", &arr[i][j]);
+    }
+  }
+
+  printf("Enter the target:\n");
+  scanf("%d", &target);
+
+  int start = 0;
+  int end = cols - 1;
+  while (start < rows && end >= 0) {
+    if (arr[start][end] == target) {
+      printf("Element %d found at row %d, column %d\n", target, start+1, end+1);
+      found = 1;
+      break;
+    }else if(arr[start][end] > target){
+      end--;
+    }else{
+      start++;
+    }
+  }
+  if (!found) {
+    printf("Element not found in the matrix\n");
+  }
+
+  return 0;
+}

@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void rowMinimum(int **arr, int rows, int cols, int *rowMin) {
+  for (int i = 0; i < rows; i++) {
+    int min = arr[i][0];
+    for (int j = 0; j < cols; j++) {
+      if (arr[i][j] < min) {
+        min = arr[i][j];
+      }
+    }
+    rowMin[i] = min;
+  }
+}
+
+void colMaximum(int **arr, int rows, int cols, int *colMax) {
+  for (int i = 0; i < rows; i++) {
+    int max = arr[0][i];
+    for (int j = 0; j < cols; j++) {
+      if (arr[j][i] > max) {
+        max = arr[j][i];
+      }
+    }
+    colMax[i] = max;
+  }
+}
+
+int main() {
+  int rows, cols;
+  printf("enter no of rows\n");
+  scanf("%d", &rows);
+  printf("enter no of columns\n");
+  scanf("%d", &cols);
+  printf("Enter the matrix\n");
+
+  int **arr = (int **)malloc(rows * sizeof(int *));
+  for (int i = 0; i < rows; i++) {
+    arr[i] = (int *)malloc(cols * sizeof(int));
+  }
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      scanf("%d", &arr[i][j]);
+    }
+  }
+
+  int *rowMin = (int *)malloc(rows * sizeof(int));
+  int *colMax = (int *)malloc(cols * sizeof(int));
+
+  rowMinimum(arr, rows, cols, rowMin);
+  colMaximum(arr, rows, cols, colMax);
+
+  int flag = 0;
+  int result = 0;
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      if (arr[i][j] == rowMin[i] && arr[i][j] == colMax[j]) {
+        result = arr[i][j];
+        flag = 1;
+        break;
+      }
+    }
+    if (flag)
+      break;
+  }
+
+  if (flag == 1) {
+    printf("%d", result);
+  } else {
+    printf("-1");
+  }
+  for (int i = 0; i < rows; i++) {
+    free(arr[i]);
+  }
+  free(arr);
+  free(rowMin);
+  free(colMax);
+  return 0;
+}
