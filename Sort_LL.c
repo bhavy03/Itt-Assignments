@@ -1,8 +1,18 @@
-// Problem Statement :
+// Problem Statement:-
 // Given the head of a linked list, return the list after sorting it in ascending order.
-
 // The number of nodes in the list is in the range [0, 5 * 104].
 // -105 <= Node.val <= 105
+
+// Time Complexity analysis:-
+// As merge sort works on divide and conquer and
+// merging step is performed at each level of recursion
+// and there are log(N) levels, the time complexity is:
+// O(nlogn)
+
+// Space Complexity analysis:-
+// Since this is linked list and we are not using extra space
+// therefore the space complexity is
+// O(1)
 
 #include <stdio.h>
 #include <stdlib.h>
